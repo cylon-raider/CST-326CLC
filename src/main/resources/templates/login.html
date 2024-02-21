@@ -24,15 +24,17 @@
   <title>Title</title>
 </head>
 <body>
-<div th:if="${param.error}">Invalid Username or Password</div>
 <div layout:fragment="content">
 	<div class="header">
 		<h1>CST-326 CLC Project: E-Commerce App</h1>
 		<h2>Login</h2>
 	</div>
+	
+	<div th:if="${param.error}">Invalid Username or Password</div>
+	
   	<form class="inputForm" th:action="@{/login}" method="post">
-    	<input type="text" id="username" name="username" placeholder="Username" class="form-control form-control-lg"/>
-    	<input type="password" id="password" name="password" placeholder="Password" class="form-control form-control-lg"/>
+    	<input type="text" id="username" name="username" placeholder="Username" class="form-control form-control-lg" required/>
+    	<input type="password" id="password" name="password" placeholder="Password" class="form-control form-control-lg" required/>
     	<button class="btn btn-primary" type="submit">Login</button>
    		<a class="btn btn-primary" href="/registration/" role="button">Register</a>
   	</form>

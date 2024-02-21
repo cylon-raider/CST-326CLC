@@ -129,15 +129,16 @@ public class UserDataService implements DataAccessInterface<UserModel>
 	public LoginModel findByUsername(String username)
 	{
 		String sql = "SELECT * FROM USER WHERE USERNAME = ?";
-		LoginModel loginModel = new LoginModel();
+		LoginModel loginModel = null;
 		try
 		{
 			SqlRowSet srs = jdbcTemplate.queryForRowSet(sql, username);
 			while (srs.next())
 			{
-				loginModel.setId(srs.getInt("USER_ID"));
-				loginModel.setUsername(srs.getString("USERNAME"));
-				loginModel.setPassword(srs.getString("PASSWORD"));
+				loginModel = new LoginModel(srs.getInt("USER_ID"),
+											srs.getString("USERNAME"),
+											srs.getString("PASSWORD"));
+				
 			}
 		} catch (Exception e)
 		{
